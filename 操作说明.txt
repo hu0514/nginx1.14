@@ -1,11 +1,4 @@
 1,根据dockerfile生成镜像
 docker build -t nginx:1.14 .
-2,创建本地目录（www所有者为id1000用户）
-mkdir -p /data/nginx/{conf,conf.d,www,logs}
-chmod -R 766 /data
-conf目录：存放nginx.conf文件 nginx.conf文件中需配置 include /etc/nginx/conf.d/*.conf;
-conf.d目录：存放其他conf文件
-www目录：存放网站
-logs目录：存放日志
-3,运行容器
-docker run -d --name nginx2 --network host -v /data/nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf -v /data/nginx/conf.d:/etc/nginx/conf.d -v /data/nginx/logs:/usr/local/nginx/logs -v /data/nginx/www:/usr/local/nginx/html nginx:1.14
+2,运行容器
+docker run -d --name nginx2 --network host -v /data:/data nginx:1.14
