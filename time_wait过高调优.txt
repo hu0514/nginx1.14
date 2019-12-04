@@ -1,0 +1,10 @@
+修改 /etc/sysctl.conf
+net.ipv4.ip_local_port_range = 1024  65000 （对外连接端口范围）
+tcp_max_tw_buckets = 256000（time_wait数）
+net.ipv4.tcp_fin_timeout = 30（超时时间）
+net.ipv4.tcp_timestamps = 1（只有开启，后两个参数才会起作用）
+net.ipv4.tcp_tw_reuse = 1 （复用连接：作为主动关闭端无用，例如客户端方位服务器，服务器主动关闭；作为被动关闭端有用，例如访问数据库是数据库主动关闭，这时有用）
+net.ipv4.tcp_tw_recycle = 0 (回收连接：开启后nat结构网络造成时间戳错误 参考：tcp_tw_recycle和tcp_timestamps导致connect失败问题。 )
+
+配置生效
+sysctl -p 
